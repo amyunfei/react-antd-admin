@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col } from 'antd';
-import Utils from '../../utils/utils'
-import './index.less'
-
+import Utils from '../../utils/utils';
+import axios from 'axios';
+import './index.less';
 
 export default class Header extends React.Component {
   componentWillMount() {
@@ -14,6 +14,22 @@ export default class Header extends React.Component {
       this.setState({
         sysTime
       })
+    })
+    this.getWeatherAPIData();
+  }
+
+  getWeatherAPIData() {
+    let city = '青岛';
+    axios.get("https://free-api.heweather.net/s6/weather/now?location=" + encodeURIComponent(city) + "&key=6b2bd283b36c42209b5d4f0b8ffcb726")
+    .then(res => {
+      if(res.statusText == 'OK') {
+        let data = res.data.HeWeather6[0].now
+        console.log(data)
+        this.setState({
+          weatherPicCode: data.cond_code,
+          weather: data.cond_txt
+        })
+      }
     })
   }
 
@@ -32,7 +48,10 @@ export default class Header extends React.Component {
           </Col>
           <Col span={20} className="weather">
             <span className="date">{this.state.sysTime}</span>
-            <span className="weather-detail">天气晴朗</span>
+            <span className="weather-detail">
+              <img src={'assets/' + this.state.weatherPicCode + '.png'} alt=""/>
+              {this.state.weather}
+            </span>
           </Col>
         </Row>
       </div>
