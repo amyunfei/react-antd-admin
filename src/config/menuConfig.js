@@ -10,7 +10,19 @@ export default [
       {
         title: '按钮',
         key: '/admin/ui/button'
-      }
+      },
+      {
+        title: '弹框',
+        key: '/admin/ui/modals'
+      },
+      {
+        title: 'Loading',
+        key: '/admin/ui/loading'
+      },
+      {
+        title: '通知提醒',
+        key: '/admin/ui/notification'
+      },
     ]
   },
   {
