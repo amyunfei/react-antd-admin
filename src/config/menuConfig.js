@@ -23,6 +23,14 @@ export default [
         title: '通知提醒',
         key: '/admin/ui/notification'
       },
+      {
+        title: 'Message',
+        key: '/admin/ui/message'
+      },
+      {
+        title: 'Tab标签页',
+        key: '/admin/ui/tab'
+      },
     ]
   },
   {
